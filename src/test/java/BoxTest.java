@@ -1,13 +1,17 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoxTest {
     @Test
     void testBox() {
-        Box<String, Integer, Float> box1 = new Box<>("string", 2,3.5f);
-        Box<String, Integer, Float> box2 = new Box<>("string", 5,6.5f);
-        float sum = box1.getType() + box2.getType() + box1.getValue() + box2.getValue();
-        assertEquals(17, sum);
+        List<Integer> numbers = new ArrayList<>();
+        Box.method(numbers);
+        Box<Integer> box = new Box<>(5, 10, 15);
+        Box<Float> box2 = new Box<>(5f, 10f, 15f);
+        assertEquals(0, box.compare(box2));
     }
 }

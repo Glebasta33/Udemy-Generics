@@ -1,35 +1,55 @@
-public class Box<K, V, T> {
-    private K key;
-    private V value;
-    private T type;
+import java.util.List;
 
-    public Box(K key, V value, T type) {
-        this.key = key;
-        this.value = value;
-        this.type = type;
+public class Box<T extends Number> {
+
+        private T[] array;
+
+    public Box(T... array) {
+        this.array = array;
     }
 
-    public K getKey() {
-        return key;
+    public T[] getArray() {
+        return array;
     }
 
-    public void setKey(K key) {
-        this.key = key;
+    public void setArray(T[] array) {
+        this.array = array;
     }
 
-    public V getValue() {
-        return value;
+    public double avg() {
+        double result = 0;
+        for (T element : array) {
+            result += ((Number) element).doubleValue();
+        }
+        return result / array.length;
     }
 
-    public void setValue(V value) {
-        this.value = value;
+/*    public static void method(List<Number> numbers) {
+
+    }*/
+
+    public static void method(List<? extends Number> numbers) {
+
     }
 
-    public T getType() {
-        return type;
+    public static <U> U getFirstElement(List<U> list) {
+        return list.get(0);
     }
 
-    public void setType(T type) {
-        this.type = type;
+    public static <V> void transfer(List<? extends V> src, List<? super V> dst) {
+        dst.addAll(src);
+        src.clear();
     }
+
+    public int compare(Box<?> another) {
+        if (avg() > another.avg()) {
+            return 1;
+        } else if (avg() == another.avg()) {
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+
+
 }
